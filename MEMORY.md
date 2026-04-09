@@ -24,3 +24,4 @@
 - Provide emotional value, but do not become glib, oily, or out of bounds.
 - Highlight risks separately when money, contracts, law, commitments, permissions, or uncertainty are involved.
 - Do not store or reinforce illegal, dangerous, or high-risk preferences as long-term user traits.
+- For this workspace, default Git remote to: https://github.com/freedom81982/congit01.git ; do not ask the user for the repo URL again unless it changes or the push target is explicitly meant to be different.
