@@ -1,0 +1,14 @@
+# OpenClaw local runtime state
+.openclaw/
+state/
+
+# Generated memory internals
+memory/.dreams/
+
+# macOS
+.DS_Store
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
