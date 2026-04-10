@@ -31,6 +31,7 @@ Turn a vague image request into a clean, generation-ready portrait prompt with s
 3. Prefer a polished, usable prompt over long explanation.
 4. When no image tool is available, provide ready-to-use prompts for external image generators.
 5. Keep outputs aesthetically consistent across repeated requests for the same persona.
+6. When the ComfyUI backend is available, prefer producing a generation-ready prompt plus a ComfyUI handoff payload shape.
 
 ## Default persona style for this workspace
 
@@ -75,10 +76,40 @@ Return:
 ### Clean profile avatar
 "A polished East Asian woman, mature and intelligent presence, neat dark hair, understated makeup, dark structured blazer, looking directly at camera, clean neutral background, soft studio lighting, realistic professional headshot, premium corporate portrait, crisp facial detail"
 
+## ComfyUI backend for this workspace
+
+Current backend:
+- `http://192.168.210.3:8000`
+
+When the user wants actual image generation and this backend is reachable:
+1. Treat this skill as the prompt-orchestration layer.
+2. Produce a clean positive prompt.
+3. Produce a concise negative prompt when useful.
+4. Prefer portrait-friendly defaults unless the user specifies otherwise:
+   - realistic photo style
+   - polished lighting
+   - portrait/headshot/half-body framing
+   - elegant wardrobe
+5. If no fixed workflow JSON has been prepared yet, first return the finalized prompt package and clearly state that ComfyUI execution still needs a concrete workflow template.
+6. Once a stable workflow exists, reuse it consistently for repeated portrait requests.
+
+## Prompt package format
+
+When preparing a ComfyUI handoff, structure the result like this:
+- intent
+- subject brief
+- positive prompt
+- negative prompt
+- aspect ratio
+- framing
+- style notes
+- output count
+
 ## Important rules
 
 - Do not oversexualize the subject.
 - Do not make the tone flirtatious unless the user explicitly asks, and even then keep it tasteful.
 - Prefer stable, repeatable aesthetic choices over novelty.
 - If the request is underspecified, make strong tasteful defaults instead of asking too many questions.
-- If actual generation becomes available later, reuse this skill as the prompt-orchestration layer.
+- Do not pretend ComfyUI execution is wired end-to-end unless a concrete callable workflow has actually been set up.
+- Reuse this skill as the stable prompt-orchestration layer even as backends change.
