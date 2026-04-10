@@ -38,3 +38,9 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 ---
 
 Add whatever helps you do your job. This is your cheat sheet.
+
+## Web Backends
+
+- 顺客云后台 → https://bss.aywcloud.com/login?redirect=/index
+  - 默认优先用 OpenClaw 受控 Chrome 打开与操作
+  - 用途：查看今日收入、订单与运营数据
