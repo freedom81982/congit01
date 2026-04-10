@@ -81,8 +81,9 @@ Return:
 Current backend:
 - `http://192.168.210.3:8000`
 
-Current minimal workflow template:
-- `references/sdxl-minimal-workflow.json`
+Current minimal workflow templates:
+- `references/flux-minimal-workflow.json` (default)
+- `references/sdxl-minimal-workflow.json` (legacy placeholder)
 
 When the user wants actual image generation and this backend is reachable:
 1. Treat this skill as the prompt-orchestration layer.
@@ -95,7 +96,8 @@ When the user wants actual image generation and this backend is reachable:
    - elegant wardrobe
 5. If no fixed workflow JSON has been prepared yet, first return the finalized prompt package and clearly state that ComfyUI execution still needs a concrete workflow template.
 6. Once a stable workflow exists, reuse it consistently for repeated portrait requests.
-7. For this workspace, prefer the minimal SDXL-compatible template in `references/sdxl-minimal-workflow.json` as the starting point for portrait generation.
+7. For this workspace, prefer the FLUX template in `references/flux-minimal-workflow.json` as the default starting point for portrait generation.
+8. Use the SDXL placeholder template only as fallback or reference, not as the default.
 
 ## Prompt package format
 
@@ -118,10 +120,13 @@ The reachable `CheckpointLoaderSimple` options currently exposed by the backend 
 - `ltx-2-19b-dev-fp8.safetensors`
 - `sd3.5_large_fp8_scaled.safetensors`
 
+Current default for this workspace:
+- `flux1-dev-fp8.safetensors`
+
 Important:
 - despite the original plan to use SDXL, the currently exposed checkpoint list does **not** include an SDXL checkpoint name.
-- the minimal template therefore uses `sd3.5_large_fp8_scaled.safetensors` as the currently callable text model placeholder.
-- before claiming a true SDXL workflow is active, verify that the backend exposes an actual SDXL checkpoint.
+- the FLUX route has already been successfully executed end-to-end from this workspace to the remote ComfyUI backend.
+- prefer FLUX by default for portraits unless the backend later exposes a better checkpoint and the user asks to switch.
 
 ## Important rules
 
@@ -131,3 +136,4 @@ Important:
 - If the request is underspecified, make strong tasteful defaults instead of asking too many questions.
 - Do not pretend ComfyUI execution is wired end-to-end unless a concrete callable workflow has actually been set up.
 - Reuse this skill as the stable prompt-orchestration layer even as backends change.
+- Default portrait generation in this workspace should use FLUX unless the user explicitly asks for another model.

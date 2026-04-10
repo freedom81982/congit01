@@ -1,0 +1,101 @@
+{
+  "1": {
+    "inputs": {
+      "ckpt_name": "flux1-dev-fp8.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple"
+  },
+  "2": {
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "max_shift": 1.15,
+      "base_shift": 0.5,
+      "width": 1024,
+      "height": 1536
+    },
+    "class_type": "ModelSamplingFlux"
+  },
+  "3": {
+    "inputs": {
+      "clip": [
+        "1",
+        1
+      ],
+      "clip_l": "sexy mature female secretary, elegant, alluring, realistic portrait, office fashion, sharp focus",
+      "t5xxl": "A highly detailed ultra clear portrait of a sexy mature East Asian female secretary, elegant and seductive, tailored black blazer, silk blouse, pencil skirt, sheer black stockings, glamorous but tasteful, confident alluring gaze, premium office setting, editorial photography, crisp sharp details, realistic skin texture, cinematic lighting",
+      "guidance": 3.5
+    },
+    "class_type": "CLIPTextEncodeFlux"
+  },
+  "4": {
+    "inputs": {
+      "conditioning": [
+        "3",
+        0
+      ],
+      "guidance": 3.5
+    },
+    "class_type": "FluxGuidance"
+  },
+  "5": {
+    "inputs": {
+      "width": 1024,
+      "height": 1536,
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage"
+  },
+  "6": {
+    "inputs": {
+      "seed": 135792468,
+      "steps": 24,
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1,
+      "model": [
+        "2",
+        0
+      ],
+      "positive": [
+        "4",
+        0
+      ],
+      "negative": [
+        "4",
+        0
+      ],
+      "latent_image": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "KSampler"
+  },
+  "7": {
+    "inputs": {
+      "samples": [
+        "6",
+        0
+      ],
+      "vae": [
+        "1",
+        2
+      ]
+    },
+    "class_type": "VAEDecode"
+  },
+  "8": {
+    "inputs": {
+      "filename_prefix": "portrait-gen-flux",
+      "images": [
+        "7",
+        0
+      ]
+    },
+    "class_type": "SaveImage"
+  }
+}
