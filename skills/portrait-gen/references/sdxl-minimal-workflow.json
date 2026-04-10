@@ -1,0 +1,100 @@
+{
+  "3": {
+    "inputs": {
+      "seed": 123456789,
+      "steps": 28,
+      "cfg": 6.5,
+      "sampler_name": "dpmpp_2m",
+      "scheduler": "karras",
+      "denoise": 1,
+      "model": [
+        "1",
+        0
+      ],
+      "positive": [
+        "6",
+        0
+      ],
+      "negative": [
+        "7",
+        0
+      ],
+      "latent_image": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "KSampler"
+  },
+  "5": {
+    "inputs": {
+      "width": 1024,
+      "height": 1024,
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage"
+  },
+  "6": {
+    "inputs": {
+      "width": 1024,
+      "height": 1024,
+      "crop_w": 0,
+      "crop_h": 0,
+      "target_width": 1024,
+      "target_height": 1024,
+      "text_g": "A refined East Asian woman in her late twenties to early thirties, mature and poised, straight dark hair, elegant natural makeup, wearing a tailored dark blazer over a silk blouse, calm confident expression, subtle warmth, premium executive assistant portrait, half-body composition, minimal luxury office background, soft controlled lighting, realistic skin texture, high-end editorial photography",
+      "text_l": "refined East Asian woman, mature, elegant, dark hair, executive assistant portrait, realistic photo",
+      "clip": [
+        "1",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncodeSDXL"
+  },
+  "7": {
+    "inputs": {
+      "width": 1024,
+      "height": 1024,
+      "crop_w": 0,
+      "crop_h": 0,
+      "target_width": 1024,
+      "target_height": 1024,
+      "text_g": "low quality, blurry, distorted face, extra fingers, malformed hands, duplicated features, overexposed, oversmoothed skin, cartoon, anime, text, watermark",
+      "text_l": "blurry, low quality, deformed, bad hands, extra digits, watermark",
+      "clip": [
+        "1",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncodeSDXL"
+  },
+  "8": {
+    "inputs": {
+      "samples": [
+        "3",
+        0
+      ],
+      "vae": [
+        "1",
+        2
+      ]
+    },
+    "class_type": "VAEDecode"
+  },
+  "9": {
+    "inputs": {
+      "filename_prefix": "portrait-gen-sdxl",
+      "images": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "SaveImage"
+  },
+  "1": {
+    "inputs": {
+      "ckpt_name": "sd3.5_large_fp8_scaled.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple"
+  }
+}

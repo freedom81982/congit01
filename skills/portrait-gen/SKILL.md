@@ -81,6 +81,9 @@ Return:
 Current backend:
 - `http://192.168.210.3:8000`
 
+Current minimal workflow template:
+- `references/sdxl-minimal-workflow.json`
+
 When the user wants actual image generation and this backend is reachable:
 1. Treat this skill as the prompt-orchestration layer.
 2. Produce a clean positive prompt.
@@ -92,6 +95,7 @@ When the user wants actual image generation and this backend is reachable:
    - elegant wardrobe
 5. If no fixed workflow JSON has been prepared yet, first return the finalized prompt package and clearly state that ComfyUI execution still needs a concrete workflow template.
 6. Once a stable workflow exists, reuse it consistently for repeated portrait requests.
+7. For this workspace, prefer the minimal SDXL-compatible template in `references/sdxl-minimal-workflow.json` as the starting point for portrait generation.
 
 ## Prompt package format
 
@@ -104,6 +108,20 @@ When preparing a ComfyUI handoff, structure the result like this:
 - framing
 - style notes
 - output count
+- checkpoint name
+- sampler settings
+
+## Current backend findings
+
+The reachable `CheckpointLoaderSimple` options currently exposed by the backend are:
+- `flux1-dev-fp8.safetensors`
+- `ltx-2-19b-dev-fp8.safetensors`
+- `sd3.5_large_fp8_scaled.safetensors`
+
+Important:
+- despite the original plan to use SDXL, the currently exposed checkpoint list does **not** include an SDXL checkpoint name.
+- the minimal template therefore uses `sd3.5_large_fp8_scaled.safetensors` as the currently callable text model placeholder.
+- before claiming a true SDXL workflow is active, verify that the backend exposes an actual SDXL checkpoint.
 
 ## Important rules
 
