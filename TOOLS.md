@@ -44,6 +44,7 @@ Add whatever helps you do your job. This is your cheat sheet.
 - 顺客云后台 → https://bss.aywcloud.com/login?redirect=/index
   - 默认优先用 OpenClaw 受控 Chrome 打开与操作
   - 用途：查看今日收入、订单与运营数据
+  - 日报 cron 当前策略：先复用登录态，失效时自动用已知账号密码重登；只有遇到滑块验证且无法自动完成时，才通知老板
 
 ## Image Generation
 
