@@ -46,6 +46,10 @@ Add whatever helps you do your job. This is your cheat sheet.
   - 用途：查看今日收入、订单与运营数据
   - 日报 cron 当前策略：先复用登录态，失效时自动用已知账号密码重登；只有遇到滑块验证且无法自动完成时，才通知老板
 
+- AYW Cloud 站点巡检
+  - 检查地址：`https://www.aywcloud.com/`、`https://bss.aywcloud.com/index`
+  - 策略：每小时巡检；正常不通知；异常立即通知；异常恢复后补发“已恢复正常”通知
+
 ## Image Generation
 
 - ComfyUI 局域网后端 → http://192.168.210.3:8000
